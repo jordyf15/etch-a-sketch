@@ -3,25 +3,35 @@ const newSketchBtn = document.querySelector('#new-sketch');
 let rainbowMode = false;
 let grayscaleMode = false;
 let colorMode = false;
+let eraserMode = false;
 let color = '#000000';
 const colorPicker = document.querySelector('#color-picker');
 const rainbowButton = document.querySelector('#rainbow-button');
 const grayscaleButton = document.querySelector('#grayscale-button');
 const colorButton = document.querySelector('#color-button');
 const resetButton = document.querySelector('#reset-button');
+const eraserButton = document.querySelector('#eraser-button');
 
 colorButton.addEventListener('click', () => {
     rainbowMode=false;
     grayscaleMode=false;
+    eraserMode = false;
 })
 rainbowButton.addEventListener('click', () => {
     rainbowMode=true;
     grayscaleMode=false;
+    eraserMode=false;
 });
 grayscaleButton.addEventListener('click',() =>{
     grayscaleMode=true;
     rainbowMode=false;
+    eraserMode=false;
 })
+eraserButton.addEventListener('click', () => {
+    grayscaleMode=false;
+    rainbowMode=false;
+    eraserMode=true;
+});
 
 function pickColor() {
     color = this.value;
@@ -127,7 +137,10 @@ function changeGridColorOnHover() {
         return;
     } else if(grayscaleMode === true) {
         this.style.backgroundColor = getGrayscaleRGBCode(this.style.backgroundColor);
-    }else{
+    } else if(eraserMode === true){
+        this.style.backgroundColor = 'rgb(255, 255, 255)';
+    }
+    else{
         this.style.backgroundColor = color;
     }
 }
