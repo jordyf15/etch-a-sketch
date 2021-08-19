@@ -1,5 +1,19 @@
 const sketchContainer = document.querySelector('#sketch-container');
 const newSketchBtn = document.querySelector('#new-sketch');
+let rainbowMode = false;
+let color = '#000000';
+const colorPicker = document.querySelector('#color-picker');
+const rainbowButton = document.querySelector('#rainbow-button');
+
+rainbowButton.addEventListener('click', () => {
+    rainbowMode=true;
+});
+
+function pickColor() {
+    color = this.value;
+}
+
+colorPicker.addEventListener('change', pickColor);
 
 function displayCreateSketchPopUp(){
     const main = document.querySelector('main');
@@ -64,12 +78,15 @@ function createSketch(e) {
 
 newSketchBtn.addEventListener('click', displayCreateSketchPopUp);
 
-let color = '#000000';
-
-
+function getRandomRGBCode() {
+    return Math.floor(Math.random()*255)+1;
+}
 
 function changeGridColorOnHover() {
-    console.log('hovered');
+    if(rainbowMode === true) {
+        this.style.backgroundColor = `rgb(${getRandomRGBCode()}, ${getRandomRGBCode()}, ${getRandomRGBCode()})`
+        return;
+    }
     this.style.backgroundColor = color;
 }
 
@@ -79,5 +96,5 @@ for(let i =0;i<16*16;i++){
     sketchGrid.addEventListener('mouseover', changeGridColorOnHover);
     sketchContainer.appendChild(sketchGrid);
 }
-sketchContainer.style.gridTemplateColumns=`repeat(16, auto)`;
-sketchContainer.style.gridTemplateRows=`repeat(16, auto)`;
+sketchContainer.style.gridTemplateColumns='repeat(16, auto)';
+sketchContainer.style.gridTemplateRows='repeat(16, auto)';
