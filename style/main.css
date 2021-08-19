@@ -1,0 +1,21 @@
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+* {
+    box-sizing: border-box;
+}
+main{
+    flex-grow: 1;
+}
+#sketch-container{
+    display:grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    width: 500px;
+    height: 500px;
+}
+.sketch-grid{
+    border: 1px solid black;
+}
