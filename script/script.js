@@ -1,13 +1,26 @@
 const sketchContainer = document.querySelector('#sketch-container');
 const newSketchBtn = document.querySelector('#new-sketch');
 let rainbowMode = false;
+let grayscaleMode = false;
+let colorMode = false;
 let color = '#000000';
 const colorPicker = document.querySelector('#color-picker');
 const rainbowButton = document.querySelector('#rainbow-button');
+const grayscaleButton = document.querySelector('#grayscale-button');
+const colorButton = document.querySelector('#color-button');
 
+colorButton.addEventListener('click', () => {
+    rainbowMode=false;
+    grayscaleMode=false;
+})
 rainbowButton.addEventListener('click', () => {
     rainbowMode=true;
+    grayscaleMode=false;
 });
+grayscaleButton.addEventListener('click',() =>{
+    grayscaleMode=true;
+    rainbowMode=false;
+})
 
 function pickColor() {
     color = this.value;
@@ -82,12 +95,30 @@ function getRandomRGBCode() {
     return Math.floor(Math.random()*255)+1;
 }
 
+function getGrayscaleRGBCode(rgb) {
+    if(rgb === ""){
+        return 'rgb(255, 255, 255)';
+    }
+    rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    const red = parseInt(rgb[1]);
+    const green = parseInt(rgb[2]);
+    const blue = parseInt(rgb[3]);
+    if(red%5 === 0 && green%5 ===0 && blue%5 ===0 && red === green && green === blue){
+        return `rgb(${red-25.5}, ${green-25.5}, ${blue-25.5})`;
+    } else {
+        return 'rgb(255, 255, 255)';
+    }
+}
+
 function changeGridColorOnHover() {
     if(rainbowMode === true) {
-        this.style.backgroundColor = `rgb(${getRandomRGBCode()}, ${getRandomRGBCode()}, ${getRandomRGBCode()})`
+        this.style.backgroundColor = `rgb(${getRandomRGBCode()}, ${getRandomRGBCode()}, ${getRandomRGBCode()})`;
         return;
+    } else if(grayscaleMode === true) {
+        this.style.backgroundColor = getGrayscaleRGBCode(this.style.backgroundColor);
+    }else{
+        this.style.backgroundColor = color;
     }
-    this.style.backgroundColor = color;
 }
 
 for(let i =0;i<16*16;i++){
