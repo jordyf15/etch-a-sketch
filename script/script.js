@@ -73,9 +73,11 @@ function changeGridColorOnHover() {
     this.style.backgroundColor = color;
 }
 
-for(let i =0;i<16;i++){
+for(let i =0;i<16*16;i++){
     const sketchGrid = document.createElement('div');
     sketchGrid.classList.add('sketch-grid');
     sketchGrid.addEventListener('mouseover', changeGridColorOnHover);
     sketchContainer.appendChild(sketchGrid);
 }
+sketchContainer.style.gridTemplateColumns=`repeat(16, auto)`;
+sketchContainer.style.gridTemplateRows=`repeat(16, auto)`;
