@@ -1,5 +1,68 @@
 const sketchContainer = document.querySelector('#sketch-container');
+const newSketchBtn = document.querySelector('#new-sketch');
 
+function displayCreateSketchPopUp(){
+    const main = document.querySelector('main');
+    const popUpBackground = document.createElement('div');
+    popUpBackground.id = 'pop-up-background';
+
+    const popUpContainer = document.createElement('div');
+    popUpContainer.id = 'pop-up-container';
+    
+    const popUpQuestion = document.createElement('p');
+    popUpQuestion.id='pop-up-question';
+    popUpQuestion.textContent="How many squares grid for new sketch?";
+    popUpContainer.appendChild(popUpQuestion);
+
+    const popUpInput = document.createElement('input');
+    popUpInput.id='pop-up-input';
+    popUpInput.addEventListener('click', (e)=>{
+        e.stopPropagation();
+    })
+    popUpContainer.appendChild(popUpInput);
+
+    const popUpAlert = document.createElement('p');
+    popUpAlert.id='pop-up-alert';
+    popUpContainer.appendChild(popUpAlert);
+
+    const popUpBtn = document.createElement('button');
+    popUpBtn.id='pop-up-btn';
+    popUpBtn.textContent='Create';
+    popUpBtn.addEventListener('click', createSketch);
+    popUpContainer.appendChild(popUpBtn);
+
+    popUpBackground.appendChild(popUpContainer);
+    popUpBackground.addEventListener('click', ()=>{
+        main.removeChild(popUpBackground);
+    })
+    main.appendChild(popUpBackground);
+}
+
+function createSketch(e) {
+    e.stopPropagation();
+    const popUpInput = document.querySelector('#pop-up-input');
+    const numberOfGrids = parseInt(popUpInput.value);
+    if(numberOfGrids>100) {
+        const popUpAlert=document.querySelector('#pop-up-alert');
+        popUpAlert.textContent='The number of maximum grid is 100!';
+        return;
+    }
+    sketchContainer.innerHTML='';
+
+    for(let i =0;i<numberOfGrids*numberOfGrids;i++){
+        const sketchGrid = document.createElement('div');
+        sketchGrid.classList.add('sketch-grid');
+        sketchGrid.addEventListener('mouseover', changeGridColorOnHover);
+        sketchContainer.appendChild(sketchGrid);
+    }
+    sketchContainer.style.gridTemplateColumns = `repeat(${numberOfGrids}, auto)`;
+    sketchContainer.style.gridTemplateRows = `repeat(${numberOfGrids}, auto)`;
+    const main = document.querySelector('main');
+    const popUpBackground = document.querySelector('#pop-up-background');
+    main.removeChild(popUpBackground);
+}
+
+newSketchBtn.addEventListener('click', displayCreateSketchPopUp);
 
 let color = '#000000';
 
