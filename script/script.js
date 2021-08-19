@@ -8,6 +8,7 @@ const colorPicker = document.querySelector('#color-picker');
 const rainbowButton = document.querySelector('#rainbow-button');
 const grayscaleButton = document.querySelector('#grayscale-button');
 const colorButton = document.querySelector('#color-button');
+const resetButton = document.querySelector('#reset-button');
 
 colorButton.addEventListener('click', () => {
     rainbowMode=false;
@@ -88,6 +89,16 @@ function createSketch(e) {
     const popUpBackground = document.querySelector('#pop-up-background');
     main.removeChild(popUpBackground);
 }
+
+function resetSketch() {
+    const grids = document.querySelectorAll('.sketch-grid');
+
+    grids.forEach((grid) => {
+        grid.style.backgroundColor = 'rgb(255, 255 , 255)';
+    })
+}
+
+resetButton.addEventListener('click', resetSketch);
 
 newSketchBtn.addEventListener('click', displayCreateSketchPopUp);
 
