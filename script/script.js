@@ -82,10 +82,17 @@ function displayCreateSketchPopUp(){
 function createSketch(e) {
     e.stopPropagation();
     const popUpInput = document.querySelector('#pop-up-input');
+    const popUpAlert=document.querySelector('#pop-up-alert');
+    if(popUpInput.value === ''){
+        popUpAlert.textContent='The input cannot be empty!';
+        return;
+    }
     const numberOfGrids = parseInt(popUpInput.value);
     if(numberOfGrids>100) {
-        const popUpAlert=document.querySelector('#pop-up-alert');
         popUpAlert.textContent='The number of maximum grid is 100!';
+        return;
+    }else if(isNaN(numberOfGrids)){
+        popUpAlert.textContent="The input must be a number!";
         return;
     }
     sketchContainer.innerHTML='';

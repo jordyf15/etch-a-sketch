@@ -103,3 +103,6 @@ footer a:hover{
     border-radius: 10px;
     text-align: center;
 }
+#pop-up-alert{
+    color: red;
+}
