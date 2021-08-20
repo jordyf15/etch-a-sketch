@@ -40,12 +40,15 @@ function pickColor() {
 colorPicker.addEventListener('change', pickColor);
 
 function displayCreateSketchPopUp(){
-    const main = document.querySelector('main');
+    const body = document.querySelector('body');
     const popUpBackground = document.createElement('div');
     popUpBackground.id = 'pop-up-background';
 
     const popUpContainer = document.createElement('div');
     popUpContainer.id = 'pop-up-container';
+    popUpContainer.addEventListener('click', (e) => {
+        e.stopPropagation();
+    })
     
     const popUpQuestion = document.createElement('p');
     popUpQuestion.id='pop-up-question';
@@ -71,9 +74,9 @@ function displayCreateSketchPopUp(){
 
     popUpBackground.appendChild(popUpContainer);
     popUpBackground.addEventListener('click', ()=>{
-        main.removeChild(popUpBackground);
+        body.removeChild(popUpBackground);
     })
-    main.appendChild(popUpBackground);
+    body.appendChild(popUpBackground);
 }
 
 function createSketch(e) {
@@ -95,9 +98,9 @@ function createSketch(e) {
     }
     sketchContainer.style.gridTemplateColumns = `repeat(${numberOfGrids}, auto)`;
     sketchContainer.style.gridTemplateRows = `repeat(${numberOfGrids}, auto)`;
-    const main = document.querySelector('main');
+    const body = document.querySelector('body');
     const popUpBackground = document.querySelector('#pop-up-background');
-    main.removeChild(popUpBackground);
+    body.removeChild(popUpBackground);
 }
 
 function resetSketch() {
