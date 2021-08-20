@@ -46,6 +46,12 @@ button{
 #color-picker-label{
     font-size: 25px;
 }
+#color-picker{
+    height: 30px;
+    width: 60px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
 
 
 footer{
