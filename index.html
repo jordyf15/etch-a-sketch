@@ -7,28 +7,39 @@
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/main.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&display=swap" rel="stylesheet">
     <title>Etch-A-Sketch</title>
 </head>
 <body>
-    <header>
-        <h1>Etch-A-Sketch</h1>
-    </header>
-    <main>
-        <button id="new-sketch">New Sketch</button>
-        <div>
-            <label for="color-picker">Color Picker</label>
-            <input type="color" id="color-picker"/>
-        </div>
-        <button id="rainbow-button">Rainbow Mode</button>
-        <button id="grayscale-button">Grayscale Mode</button>
-        <button id="color-button">Color Mode</button>
-        <button id="reset-button">Reset</button>
-        <button id="eraser-button">Eraser Mode</button>
+    <section id='toolbox-section'>
+        <header>
+            <h1>Etch-A-Sketch</h1>
+        </header>
+        <main>
+            <div>
+                <button id="new-sketch">New Sketch</button>
+                <button id="reset-button">Reset</button>
+            </div>
+            <div>
+                <label for="color-picker" id="color-picker-label">Color Picker</label>
+                <input type="color" id="color-picker"/> 
+            </div>
+            <div id="mode-container">
+                <button id="color-button">Color Mode</button>
+                <button id="eraser-button">Eraser Mode</button>  
+                <button id="rainbow-button">Rainbow Mode</button>
+                <button id="grayscale-button">Grayscale Mode</button>
+            </div>           
+        </main>
+        <footer>
+            <p>Copyright © 2021 <a href="https://github.com/jordyf15/rock-paper-scissors">jordyf15 <i class="fab fa-github"></i></a></p>
+        </footer>
+    </section>
+    <section id='sketch-section'>
         <div id="sketch-container"></div>
-    </main>
-    <footer>
-        <p>Copyright © 2021 <a href="https://github.com/jordyf15/rock-paper-scissors">jordyf15 <i class="fab fa-github"></i></a></p>
-    </footer>
+    </section>
     <script src="script/script.js"></script>
 </body>
 </html>
